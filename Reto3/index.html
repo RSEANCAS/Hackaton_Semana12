@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+    <table id="tblInfo">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Nombres</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Juan</td>
+                <td>
+                    <a href="#">Ver Info</a>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Pedro</td>
+                <td>
+                    <a href="#">Ver Info</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btnAbrirModal">
+        Abrir Modal
+    </button>
+    <div class="modal">
+        <div class="header">
+            <h3>Modal Title</h3>
+        </div>
+        <div class="content">
+            <label for="">
+                Nro: <input type="text" readonly id="txtNro" />
+            </label>
+            <label for="">
+                Nombres: <input type="text" readonly id="txtNombres" />
+            </label>
+        </div>
+        <div class="footer">
+            <button data-close="true">Close</button>
+            <button>Save Changes</button>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+    <script>
+        document.querySelectorAll('#tblInfo tbody tr td a').forEach((x, i) => {
+            console.log(x, i);
+            x.addEventListener('click', (e) => {
+                e.preventDefault();
+                let Nro = '1';
+                let Nombres = 'Juan';
+                let data = {
+                    Nro,
+                    Nombres
+                };
+                modal('.modal', mostrarInfo(data));
+
+            })
+
+            var mostrarInfo = (data) => {
+                document.querySelector('#txtNro').value = data.Nro;
+                document.querySelector('#txtNombres').value = data.Nombres;
+            }
+        });
+    </script>
+</body>
+
+</html>
